@@ -1,0 +1,82 @@
+# learn.chatgpt.com 抓取结果（80 篇）
+
+- [-](docs__get-started-with-work.md) — https://learn.chatgpt.com/docs/get-started-with-work
+- [-](api__docs.md) — https://learn.chatgpt.com/api/docs
+- [# Models](api__docs__models.md) — https://learn.chatgpt.com/api/docs/models
+- [# Agents](api__docs__guides__agents.md) — https://learn.chatgpt.com/api/docs/guides/agents
+- [# Using tools](api__docs__guides__tools.md) — https://learn.chatgpt.com/api/docs/guides/tools
+- [# Audio and voice](api__docs__guides__audio.md) — https://learn.chatgpt.com/api/docs/guides/audio
+- [# Production best practices](api__docs__guides__production-best-practices.md) — https://learn.chatgpt.com/api/docs/guides/production-best-practices
+- [-](docs.md) — https://learn.chatgpt.com/docs
+- [# Developer quickstart](api__docs__quickstart.md) — https://learn.chatgpt.com/api/docs/quickstart
+- [---](api__docs__guides__latest-model.md) — https://learn.chatgpt.com/api/docs/guides/latest-model
+- [# Key concepts](api__docs__concepts.md) — https://learn.chatgpt.com/api/docs/concepts
+- [# API credits for ChatGPT subscribers](api__docs__guides__chatgpt-api-credits.md) — https://learn.chatgpt.com/api/docs/guides/chatgpt-api-credits
+- [# Migrate to the Responses API](api__docs__guides__migrate-to-responses.md) — https://learn.chatgpt.com/api/docs/guides/migrate-to-responses
+- [# Decisions](api__docs__guides__decisions.md) — https://learn.chatgpt.com/api/docs/guides/decisions
+- [# Conversation state](api__docs__guides__conversation-state.md) — https://learn.chatgpt.com/api/docs/guides/conversation-state
+- [# Background mode](api__docs__guides__background.md) — https://learn.chatgpt.com/api/docs/guides/background
+- [# Streaming API responses](api__docs__guides__streaming-responses.md) — https://learn.chatgpt.com/api/docs/guides/streaming-responses
+- [# WebSocket Mode](api__docs__guides__websocket-mode.md) — https://learn.chatgpt.com/api/docs/guides/websocket-mode
+- [# Mid-turn steering](api__docs__guides__steering.md) — https://learn.chatgpt.com/api/docs/guides/steering
+- [# Multi-agent](api__docs__guides__responses-multi-agent.md) — https://learn.chatgpt.com/api/docs/guides/responses-multi-agent
+- [# Webhooks](api__docs__guides__webhooks.md) — https://learn.chatgpt.com/api/docs/guides/webhooks
+- [# File inputs](api__docs__guides__file-inputs.md) — https://learn.chatgpt.com/api/docs/guides/file-inputs
+- [# Compaction](api__docs__guides__compaction.md) — https://learn.chatgpt.com/api/docs/guides/compaction
+- [# Counting tokens](api__docs__guides__token-counting.md) — https://learn.chatgpt.com/api/docs/guides/token-counting
+- [# SDKs and CLI](api__docs__libraries.md) — https://learn.chatgpt.com/api/docs/libraries
+- [# OpenAI CLI](api__docs__libraries__openai-cli.md) — https://learn.chatgpt.com/api/docs/libraries/openai-cli
+- [# OpenAI on Amazon Bedrock](api__docs__guides__amazon-bedrock.md) — https://learn.chatgpt.com/api/docs/guides/amazon-bedrock
+- [# OpenAI on Google Cloud](api__docs__guides__google-cloud.md) — https://learn.chatgpt.com/api/docs/guides/google-cloud
+- [# Changelog](api__docs__changelog.md) — https://learn.chatgpt.com/api/docs/changelog
+- [# Deprecations](api__docs__deprecations.md) — https://learn.chatgpt.com/api/docs/deprecations
+- [# Supported countries and territories](api__docs__supported-countries.md) — https://learn.chatgpt.com/api/docs/supported-countries
+- [# Overview of OpenAI Crawlers](api__docs__bots.md) — https://learn.chatgpt.com/api/docs/bots
+- [# Agent Builder](api__docs__guides__agent-builder.md) — https://learn.chatgpt.com/api/docs/guides/agent-builder
+- [# Migrate from Agent Builder](api__docs__guides__agent-builder__migrate-from-agent-builder.md) — https://learn.chatgpt.com/api/docs/guides/agent-builder/migrate-from-agent-builder
+- [# Node reference](api__docs__guides__node-reference.md) — https://learn.chatgpt.com/api/docs/guides/node-reference
+- [# Safety in building agents](api__docs__guides__agent-builder-safety.md) — https://learn.chatgpt.com/api/docs/guides/agent-builder-safety
+- [# Getting started with datasets](api__docs__guides__evaluation-getting-started.md) — https://learn.chatgpt.com/api/docs/guides/evaluation-getting-started
+- [# Working with evals](api__docs__guides__evals.md) — https://learn.chatgpt.com/api/docs/guides/evals
+- [# Prompt optimizer](api__docs__guides__prompt-optimizer.md) — https://learn.chatgpt.com/api/docs/guides/prompt-optimizer
+- [# Evaluate external models](api__docs__guides__external-models.md) — https://learn.chatgpt.com/api/docs/guides/external-models
+- [# Graders](api__docs__guides__graders.md) — https://learn.chatgpt.com/api/docs/guides/graders
+- [# Model optimization](api__docs__guides__model-optimization.md) — https://learn.chatgpt.com/api/docs/guides/model-optimization
+- [# Supervised fine-tuning](api__docs__guides__supervised-fine-tuning.md) — https://learn.chatgpt.com/api/docs/guides/supervised-fine-tuning
+- [# Vision fine-tuning](api__docs__guides__vision-fine-tuning.md) — https://learn.chatgpt.com/api/docs/guides/vision-fine-tuning
+- [# Direct preference optimization](api__docs__guides__direct-preference-optimization.md) — https://learn.chatgpt.com/api/docs/guides/direct-preference-optimization
+- [# Fine-tuning best practices](api__docs__guides__fine-tuning-best-practices.md) — https://learn.chatgpt.com/api/docs/guides/fine-tuning-best-practices
+- [# Assistants migration guide](api__docs__assistants__migration.md) — https://learn.chatgpt.com/api/docs/assistants/migration
+- [-](api__docs__pricing.md) — https://learn.chatgpt.com/api/docs/pricing
+- [# Model selection](api__docs__guides__model-selection.md) — https://learn.chatgpt.com/api/docs/guides/model-selection
+- [# Text generation](api__docs__guides__text.md) — https://learn.chatgpt.com/api/docs/guides/text
+- [# Code generation](api__docs__guides__code-generation.md) — https://learn.chatgpt.com/api/docs/guides/code-generation
+- [# Structured model outputs](api__docs__guides__structured-outputs.md) — https://learn.chatgpt.com/api/docs/guides/structured-outputs
+- [# Prompting](api__docs__guides__prompting.md) — https://learn.chatgpt.com/api/docs/guides/prompting
+- [# Prompt engineering](api__docs__guides__prompt-engineering.md) — https://learn.chatgpt.com/api/docs/guides/prompt-engineering
+- [# Citation Formatting](api__docs__guides__citation-formatting.md) — https://learn.chatgpt.com/api/docs/guides/citation-formatting
+- [# Migrate from prompt objects](api__docs__guides__prompting__migrate-from-prompt-object.md) — https://learn.chatgpt.com/api/docs/guides/prompting/migrate-from-prompt-object
+- [# Prompt generation](api__docs__guides__prompt-generation.md) — https://learn.chatgpt.com/api/docs/guides/prompt-generation
+- [# Frontend prompt instructions](api__docs__guides__frontend-prompt.md) — https://learn.chatgpt.com/api/docs/guides/frontend-prompt
+- [# Reasoning models](api__docs__guides__reasoning.md) — https://learn.chatgpt.com/api/docs/guides/reasoning
+- [# Preserved reasoning](api__docs__guides__preserved-reasoning.md) — https://learn.chatgpt.com/api/docs/guides/preserved-reasoning
+- [# Reasoning best practices](api__docs__guides__reasoning-best-practices.md) — https://learn.chatgpt.com/api/docs/guides/reasoning-best-practices
+- [# Images and vision](api__docs__guides__images-vision.md) — https://learn.chatgpt.com/api/docs/guides/images-vision
+- [# Image input token and cost calculator](api__docs__guides__image-cost-calculator.md) — https://learn.chatgpt.com/api/docs/guides/image-cost-calculator
+- [# Image generation](api__docs__guides__image-generation.md) — https://learn.chatgpt.com/api/docs/guides/image-generation
+- [-](api__docs__guides__image-prompting.md) — https://learn.chatgpt.com/api/docs/guides/image-prompting
+- [# Getting started with the Realtime API](api__docs__guides__realtime.md) — https://learn.chatgpt.com/api/docs/guides/realtime
+- [# Voice agents](api__docs__guides__voice-agents.md) — https://learn.chatgpt.com/api/docs/guides/voice-agents
+- [# Vector embeddings](api__docs__guides__embeddings.md) — https://learn.chatgpt.com/api/docs/guides/embeddings
+- [# Moderation](api__docs__guides__moderation.md) — https://learn.chatgpt.com/api/docs/guides/moderation
+- [# Agents API](api__docs__guides__agents-api__overview.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/overview
+- [# Agents API quickstart](api__docs__guides__agents-api__quickstart.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/quickstart
+- [# Architecture](api__docs__guides__agents-api__architecture.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/architecture
+- [# Configuring Agents](api__docs__guides__agents-api__configuration.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/configuration
+- [# Run and continue sessions](api__docs__guides__agents-api__sessions.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions
+- [# Events and items](api__docs__guides__agents-api__sessions__events.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions/events
+- [# Manage sessions](api__docs__guides__agents-api__sessions__manage.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions/manage
+- [# Scheduled automations](api__docs__guides__agents-api__sessions__automations.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions/automations
+- [# Automatic review](api__docs__guides__agents-api__sessions__approvals.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions/approvals
+- [# Session webhooks](api__docs__guides__agents-api__sessions__webhooks.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/sessions/webhooks
+- [# OpenAI-hosted sandboxes](api__docs__guides__agents-api__environments__openai-hosted.md) — https://learn.chatgpt.com/api/docs/guides/agents-api/environments/openai-hosted
