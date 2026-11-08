@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
 """抓 learn.chatgpt.com 文档（在 GitHub Actions 的海外 runner 上跑）。
 
-用法: python fetch_docs.py <起始URL> [最大页数]
+用法: python fetch_docs.py [起始URL] [最大页数]
+策略:
+  1. 先取 https://learn.chatgpt.com/llms.txt 拿到全部页面清单
+  2. 每页优先取 <url>.md（站点明确支持 markdown 版）
+  3. 取不到就退回 HTML 转文本
 产物: docs/*.md, docs/index.md
 """
 import os
 import re
 import sys
 import urllib.request
-import urllib.error
 import html as htmllib
 from urllib.parse import urljoin, urlparse
 
 UA = {'User-Agent': 'Mozilla/5.0 (docs-fetch)'}
 OUT = 'docs'
 DEFAULT_START = 'https://learn.chatgpt.com/docs/get-started-with-work'
+SITE = 'https://learn.chatgpt.com'
 
 
 def _arg(i, default):
@@ -23,7 +27,7 @@ def _arg(i, default):
     return default
 
 
-MAX = int(_arg(2, '80')) if _arg(2, '80').isdigit() else 80
+MAX = int(_arg(2, '300')) if _arg(2, '300').isdigit() else 300
 
 
 def get(url, timeout=45):
@@ -50,22 +54,32 @@ def slug(url):
     return (p or 'index') + '.md'
 
 
-def links(html, base):
-    found = []
-    for m in re.finditer(r'href="([^"#]+)"', html):
-        u = urljoin(base, m.group(1))
-        if 'learn.chatgpt.com' in u and '/docs' in u and not u.endswith(('.png', '.jpg', '.svg', '.css', '.js')):
-            u = u.split('?')[0].rstrip('/')
-            if u not in found:
-                found.append(u)
-    return found
+def looks_markdown(b):
+    head = b[:600].lower()
+    return len(b) > 80 and b'<html' not in head and b'<!doctype' not in head
 
 
-def main():
-    start = _arg(1, DEFAULT_START)
-    os.makedirs(OUT, exist_ok=True)
-    seen, queue, saved = set(), [start], []
-    while queue and len(saved) < MAX:
+def from_llms_txt():
+    try:
+        raw, _ = get(SITE + '/llms.txt')
+    except Exception as e:
+        print('llms.txt failed', e)
+        return []
+    txt = raw.decode('utf-8', 'ignore')
+    urls = []
+    for m in re.finditer(r'https://learn\.chatgpt\.com/[^\s)\]<>"\']+', txt):
+        u = m.group(0).split('?')[0].rstrip('/')
+        if u.endswith('.md'):
+            u = u[:-3]
+        if u not in urls and ('/docs' in u or '/api/docs' in u):
+            urls.append(u)
+    print('llms.txt urls', len(urls))
+    return urls
+
+
+def crawl(start, limit):
+    seen, queue, found = set(), [start], []
+    while queue and len(found) < limit:
         url = queue.pop(0)
         if url in seen:
             continue
@@ -75,34 +89,60 @@ def main():
         except Exception as e:
             print('skip', url, e)
             continue
-        html = raw.decode('utf-8', 'ignore')
         if 'html' in ctype:
-            for u in links(html, url):
-                if u not in seen:
-                    queue.append(u)
-        # 优先抓 .md 版本
+            for m in re.finditer(r'href="([^"#]+)"', raw.decode('utf-8', 'ignore')):
+                u = urljoin(url, m.group(1))
+                if 'learn.chatgpt.com' in u and '/docs' in u and not u.endswith(
+                        ('.png', '.jpg', '.svg', '.css', '.js')):
+                    u = u.split('?')[0].rstrip('/')
+                    if u not in seen:
+                        queue.append(u)
+        found.append(url)
+    return found
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    urls = from_llms_txt()
+    if len(urls) < 5:
+        urls = crawl(_arg(1, DEFAULT_START), MAX)
+    urls = urls[:MAX]
+    saved = []
+    for url in urls:
         text, ok = None, False
-        if not url.endswith('.md'):
-            try:
-                mraw, mct = get(url + '.md')
-                if b'<' not in mraw[:400] and len(mraw) > 80:
-                    text, ok = mraw.decode('utf-8', 'ignore'), True
-            except Exception:
-                pass
+        try:
+            mraw, _ = get(url + '.md')
+            if looks_markdown(mraw):
+                text, ok = mraw.decode('utf-8', 'ignore'), True
+        except Exception:
+            pass
         if not ok:
-            text = to_text(raw)
-        if len(text) < 120:
+            try:
+                raw, ctype = get(url)
+                text = to_text(raw)
+            except Exception as e:
+                print('skip', url, e)
+                continue
+        if not text or len(text) < 100:
             print('too short', url)
             continue
         name = slug(url)
         with open(os.path.join(OUT, name), 'w', encoding='utf-8') as f:
             f.write('<!-- source: %s -->\n\n' % url + text)
-        saved.append((name, url, text.split('\n')[0][:80]))
-        print('saved', name, len(text))
+        title = ''
+        for ln in text.split('\n'):
+            if ln.startswith('# ') or ln.startswith('## '):
+                title = ln.lstrip('# ').strip()
+                break
+        if not title:
+            title = name
+        saved.append((name, url, title[:90], ok))
+        print('saved', name, len(text), 'md' if ok else 'html')
     with open(os.path.join(OUT, 'index.md'), 'w', encoding='utf-8') as f:
         f.write('# learn.chatgpt.com 抓取结果（%d 篇）\n\n' % len(saved))
-        for name, url, title in saved:
-            f.write('- [%s](%s) — %s\n' % (title or name, name, url))
+        f.write('> 每篇的 markdown 原版来自 `<url>.md`；标记 (html) 的是 HTML 转换。\n\n')
+        for name, url, title, ok in saved:
+            f.write('- [%s](%s) — %s%s\n' % (title, name, url, '' if ok else ' (html)'))
     print('done', len(saved))
 
 
