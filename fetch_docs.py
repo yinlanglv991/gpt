@@ -14,7 +14,16 @@ from urllib.parse import urljoin, urlparse
 
 UA = {'User-Agent': 'Mozilla/5.0 (docs-fetch)'}
 OUT = 'docs'
-MAX = int(sys.argv[2]) if len(sys.argv) > 2 else 80
+DEFAULT_START = 'https://learn.chatgpt.com/docs/get-started-with-work'
+
+
+def _arg(i, default):
+    if len(sys.argv) > i and sys.argv[i].strip():
+        return sys.argv[i].strip()
+    return default
+
+
+MAX = int(_arg(2, '80')) if _arg(2, '80').isdigit() else 80
 
 
 def get(url, timeout=45):
@@ -53,7 +62,7 @@ def links(html, base):
 
 
 def main():
-    start = sys.argv[1]
+    start = _arg(1, DEFAULT_START)
     os.makedirs(OUT, exist_ok=True)
     seen, queue, saved = set(), [start], []
     while queue and len(saved) < MAX:
