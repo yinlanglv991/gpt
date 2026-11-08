@@ -1,0 +1,46 @@
+name: fetch-learn-docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      start:
+        description: 'Starting URL'
+        required: false
+        default: 'https://learn.chatgpt.com/docs/get-started-with-work'
+      max_pages:
+        description: 'Max pages'
+        required: false
+        default: '80'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch docs
+        env:
+          START_URL: ${{ inputs.start }}
+          MAX_PAGES: ${{ inputs.max_pages }}
+        run: python3 fetch_docs.py "$START_URL" "$MAX_PAGES"
+
+      - name: Commit
+        run: |
+          git config user.name  "docs-bot"
+          git config user.email "docs-bot@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then echo "no changes"; else
+            git commit -m "docs: fetch $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: learn-docs
+          path: docs/
